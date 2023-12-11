@@ -1,6 +1,15 @@
 const {User}=require('../models/auth')
 const login=(req,res)=>{
-    res.send("hello i am login")
+    const {email,password}=req.body
+    const user=new User.find({
+        email,password
+    });
+    if(user.length>=1){
+        res.send({"status":true,user})
+    }
+    else{
+        res.send({"status":false,"message":"invalid creds"})
+    }
 }
 const logout=(req,res)=>{
 
