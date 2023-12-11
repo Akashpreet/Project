@@ -7,7 +7,10 @@ const logout=(req,res)=>{
     res.send("hello i am logout")
 }
 const signup=(req,res)=>{
-    const user=new User({name:'Akash',email:'xyz@gmail.com',password:"zxcv"});
+    const {name,email,password}=req.body
+    const user=new User({
+        name,email,password
+    });
     user.save().then(()=>console.log('born'));
     res.send("hello i am signup")
 }

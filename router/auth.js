@@ -4,5 +4,5 @@ const {login,logout,signup}=require('../functions/auth')
 const authrouter=express.Router()
 authrouter.get('/login',login)
 authrouter.get('/logout',logout)
-authrouter.get('/signup',signup)
+authrouter.post('/signup',signup)
 module.exports={authrouter}
