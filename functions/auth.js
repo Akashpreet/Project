@@ -1,13 +1,20 @@
 const {User}=require('../models/auth')
 const bcrypt=require('bcrypt')
+var jwt=require('jsonwebtoken')
+const signature="@#33ttSG"
+
 const login=async(req,res)=>{
     const {email,password}=req.body
-    const user=User.find({
-        email,password
+    const user= await User.find({
+        email
     });
     if(user.length>=1){
         const signal=await bcrypt.compare(password,user[0].password)
         if(signal){
+            var token=jwt.sign({email : 'akash@gmail.com'},signature);
+            console.log("token: ",token)
+            var decoded=jwt.verify(token,signature);
+            console.log(decoded)
         res.send({"status":true,user})
         }
         else{
