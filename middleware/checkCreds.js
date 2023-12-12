@@ -6,7 +6,7 @@ const checkCreds=(req,res,next)=>{
     if(name.length<=3 || email.length<=5 ||password!==cpassword){
         res.send({"status":false,"message":"invalid creds"})
     }
-    const user=new User.find({
+    const user=User.find({
         email
     });
     if(user.length>=1){
